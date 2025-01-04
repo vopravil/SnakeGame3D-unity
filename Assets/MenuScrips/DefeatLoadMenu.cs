@@ -3,26 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LoadMenu : MonoBehaviour
+public class DefeatLoadMenu : MonoBehaviour
 {
-    public int nextlevel = 0;
+    public int restartLevel = 0;
 
 
     public void LoadMenuScene()
     {
         Time.timeScale = 1; // Ensure the game is unpaused
         SceneManager.LoadScene(1);
-        PlayerPrefs.SetInt("UnlockedLevel", nextlevel);
-        PlayerPrefs.Save();
+       
     }
 
     public void LoadNextLevel()
     {
         Time.timeScale = 1; // Ensure the game is unpaused
-        SceneManager.LoadScene(nextlevel);
-        PlayerPrefs.SetInt("UnlockedLevel", nextlevel);
-        PlayerPrefs.Save();
+        SceneManager.LoadScene(restartLevel);
+       
     }
 
-   
+
 }
