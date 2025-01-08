@@ -12,11 +12,13 @@ public class bossCollisions : MonoBehaviour
     public float maxHealth = 100f;
     private float currentHealth;
     public Image healthBar;
+    public float dmg;
+    public bool isSlain = false;
 
     void Start()
     {
         currentHealth = maxHealth;
-        UpdateHealthBar(); // Ensure health bar starts correctly
+        UpdateHealthBar(); 
 
         if (PopUpText == null)
         {
@@ -40,10 +42,10 @@ public class bossCollisions : MonoBehaviour
         {
             if (other.CompareTag("ball"))
             {
-                PopUpText.ShowFloatingText(transform.position + new Vector3(0, 5, 10), "-10 hp");
-                TakeDamage(25f); // Apply damage
-                TriggerExplosion(); // Trigger explosion
-                Destroy(other.gameObject); // Destroy the ball
+                PopUpText.ShowFloatingText(transform.position + new Vector3(0, 5, 10), "-15 hp");
+                TakeDamage(dmg); 
+                TriggerExplosion(); 
+                Destroy(other.gameObject); 
             }
             else if (other.CompareTag("body") || other.CompareTag("tail") || other.CompareTag("head"))
             {
@@ -57,15 +59,24 @@ public class bossCollisions : MonoBehaviour
     {
         currentHealth -= damage;
         Debug.Log("Current Health: " + currentHealth); // Debugging health value
-        if (currentHealth < 0) currentHealth = 0;
+        if (currentHealth < 0)
+        {
+            currentHealth = 0;
+            isSlain = true;
+        };
+
+
+        
+
         UpdateHealthBar(); // Update health bar
     }
 
     void UpdateHealthBar()
     {
-        float healthPercentage = currentHealth / maxHealth;
-        healthBar.fillAmount = healthPercentage; // Adjust fill amount based on health
+        healthBar.fillAmount = currentHealth /100f;
     }
+
+
 
     public void TriggerExplosion()
     {
