@@ -6527,12 +6527,40 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1382793142114231064, guid: ea552408f5361804aa55c4896c54027c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382793142114231064, guid: ea552408f5361804aa55c4896c54027c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382793142114231064, guid: ea552408f5361804aa55c4896c54027c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382793142114231064, guid: ea552408f5361804aa55c4896c54027c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382793142114231064, guid: ea552408f5361804aa55c4896c54027c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 594.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382793142114231064, guid: ea552408f5361804aa55c4896c54027c, type: 3}
       propertyPath: m_AnchoredPosition.x
+<<<<<<< Updated upstream
       value: -393.9
       objectReference: {fileID: 0}
     - target: {fileID: 1382793142114231064, guid: ea552408f5361804aa55c4896c54027c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 263
+=======
+      value: 116.399994
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382793142114231064, guid: ea552408f5361804aa55c4896c54027c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -314.75
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 4476195342628137313, guid: ea552408f5361804aa55c4896c54027c, type: 3}
       propertyPath: m_Name
@@ -8412,7 +8440,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.33333334
+  m_VoxelSize: 1.6666666
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: f602047701c1837458568203757707c3, type: 2}
   m_BuildHeightMesh: 0
