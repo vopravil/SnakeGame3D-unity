@@ -5314,7 +5314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2396278102754414996, guid: c111b09c7e891db4988738ccaf73f323, type: 3}
       propertyPath: nextlevel
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2396278102754414996, guid: c111b09c7e891db4988738ccaf73f323, type: 3}
       propertyPath: unlockLevel
