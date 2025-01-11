@@ -1354,12 +1354,40 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1382793142114231064, guid: ea552408f5361804aa55c4896c54027c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382793142114231064, guid: ea552408f5361804aa55c4896c54027c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382793142114231064, guid: ea552408f5361804aa55c4896c54027c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382793142114231064, guid: ea552408f5361804aa55c4896c54027c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382793142114231064, guid: ea552408f5361804aa55c4896c54027c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -394
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 1382793142114231064, guid: ea552408f5361804aa55c4896c54027c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 266.1
+      value: -65.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559247996270415974, guid: ea552408f5361804aa55c4896c54027c, type: 3}
+      propertyPath: m_margin.w
+      value: -554.6254
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559247996270415974, guid: ea552408f5361804aa55c4896c54027c, type: 3}
+      propertyPath: m_margin.y
+      value: -22.798279
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559247996270415974, guid: ea552408f5361804aa55c4896c54027c, type: 3}
+      propertyPath: m_margin.z
+      value: -4.5005493
       objectReference: {fileID: 0}
     - target: {fileID: 4476195342628137313, guid: ea552408f5361804aa55c4896c54027c, type: 3}
       propertyPath: m_Name

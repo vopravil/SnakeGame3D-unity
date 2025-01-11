@@ -9,6 +9,7 @@ public class bossCollisions : MonoBehaviour
     public popUpText PopUpText;
     public ParticleSystem particlePrefab; // The Particle System prefab to instantiate
     private ParticleSystem activeParticle; // To hold the instantiated particle system
+    public TMPro.TextMeshProUGUI GreatEnemyFelled;
     public float maxHealth = 100f;
     private float currentHealth;
     public Image healthBar;
@@ -61,9 +62,12 @@ public class bossCollisions : MonoBehaviour
         Debug.Log("Current Health: " + currentHealth); // Debugging health value
         if (currentHealth < 0)
         {
+            
             currentHealth = 0;
             isSlain = true;
+            Destroy(gameObject);
         };
+       
 
 
         
@@ -94,4 +98,6 @@ public class bossCollisions : MonoBehaviour
             Debug.Log("Particle system triggered!");
         }
     }
+
+   
 }

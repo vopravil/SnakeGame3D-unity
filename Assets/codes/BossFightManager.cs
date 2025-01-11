@@ -13,9 +13,12 @@ public class BossFightManager : MonoBehaviour
     public int fruitsForWin = 6;
     public TMPro.TextMeshProUGUI scoreText; // Correct type for UI text.
     public TMPro.TextMeshProUGUI winScoreText;
+    public TMPro.TextMeshProUGUI GreatEnemyFelled;
     public GameObject minimap;
-    public GameObject minimapBackground;
+    public GameObject minimapBackground; 
     public bossCollisions BossCollisions;
+    private bool greatEnemyFelledShown = false;
+
     private float time;
     private float bestTime;
 
@@ -45,16 +48,18 @@ public class BossFightManager : MonoBehaviour
         // Increment the timer
         time += Time.deltaTime;
 
-        scoreText.text = "Time: " + time.ToString("F2") + "\n" +  "Bullets: " + SnakeShot.ballCount + "x" ;
+        scoreText.text = "Time: " + time.ToString("F2") + "\n" + "Bullets: " + SnakeShot.ballCount + "x";
 
-        if (BossCollisions.isSlain == true)
+        if (BossCollisions.isSlain && !greatEnemyFelledShown) // Ensure the coroutine runs only once.
         {
             darkCave.SetActive(false);
             goldCave.SetActive(true);
-
-            Win();
+            GreatEnemyFelled.gameObject.SetActive(true);
+            greatEnemyFelledShown = true; // Set the flag to true.
+            StartCoroutine(GreatEnemyFelledText());
         }
-        if (SnakeMovement.collided == true)
+
+        if (SnakeMovement.collided)
         {
             StartCoroutine(Defeat());
         }
@@ -92,6 +97,9 @@ public class BossFightManager : MonoBehaviour
         minimap.gameObject.SetActive(false);
         minimapBackground.gameObject.SetActive(false);
     }
-
-
+    public IEnumerator GreatEnemyFelledText()
+    {
+        yield return new WaitForSeconds(1f);
+        GreatEnemyFelled.gameObject.SetActive(false);
+    }
 }

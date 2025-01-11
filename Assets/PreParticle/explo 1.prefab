@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3800087050024056208}
   - component: {fileID: 6027983143473262455}
   m_Layer: 0
-  m_Name: explo
+  m_Name: explo 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -2.6606636, y: 0.16666698, z: 2.2446995}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1366,8 +1366,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.5283019, g: 0.042363837, b: 0.28026345, a: 1}
-        key1: {r: 1, g: 0.12549019, b: 0.42086586, a: 1}
+        key0: {r: 0, g: 0.5368862, b: 1, a: 1}
+        key1: {r: 0.05540227, g: 0.3744614, b: 0.7830189, a: 1}
         key2: {r: 0, g: 0.13238955, b: 0.3490566, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
