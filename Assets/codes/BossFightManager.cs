@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class BossFightManager : MonoBehaviour
 {
     public snakeMovement SnakeMovement;
@@ -26,21 +28,17 @@ public class BossFightManager : MonoBehaviour
     {
         darkCave.SetActive(true);
         goldCave.SetActive(false);
+
         if (winScreen != null) winScreen.SetActive(false);
         if (defeatScreen != null) defeatScreen.SetActive(false);
 
-        if (SnakeMovement == null)
-        {
-            SnakeMovement = FindObjectOfType<snakeMovement>();
-        }
-        if (SnakeShot == null)
-        {
-            SnakeShot = FindObjectOfType<snakeShot>();
-        }
+        SnakeMovement = FindObjectOfType<snakeMovement>();
+        SnakeShot = FindObjectOfType<snakeShot>();
 
         // Initialize time variables
         time = 0;
-        bestTime = PlayerPrefs.GetFloat("BestTime", float.MaxValue);
+        bestTime = PlayerPrefs.GetFloat("BestTime", -1); // Default to -1
+       
     }
 
     void Update()
@@ -68,20 +66,23 @@ public class BossFightManager : MonoBehaviour
     public void Win()
     {
         Time.timeScale = 0;
-        winScreen.gameObject.SetActive(true);
+        winScreen.SetActive(true);
         scoreText.gameObject.SetActive(false);
-        
-        // Check for best time
-        if (time < bestTime)
+
+        Debug.Log("Current Time: " + time);
+        Debug.Log("Best Time Before Update: " + bestTime);
+
+        // Update best time if applicable
+        if (time < bestTime || bestTime < 0)
         {
             bestTime = time;
             PlayerPrefs.SetFloat("BestTime", bestTime);
+            PlayerPrefs.Save();
+            Debug.Log("New Best Time Saved: " + bestTime);
         }
 
-        winScoreText.text = "Time: " + time.ToString("F2") + " seconds" + "\n" +
-                            "Best Time: " + (bestTime == float.MaxValue ? "---" : bestTime.ToString("F2") + " seconds") + "\n" 
-                           ;
-                          
+        winScoreText.text = "Time: " + time.ToString("F2") + " seconds\n" +
+                            "Best Time: " + (bestTime < 0 ? "---" : bestTime.ToString("F2") + " seconds");
 
         minimap.gameObject.SetActive(false);
         minimapBackground.gameObject.SetActive(false);

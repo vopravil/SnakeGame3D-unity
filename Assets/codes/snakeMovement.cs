@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class snakeMovement : MonoBehaviour
 {
@@ -19,14 +20,30 @@ public class snakeMovement : MonoBehaviour
     public TMPro.TextMeshProUGUI youDiedText;
     int rotation = 0;
     public gameManager GameManager;
-
+    public BossFightManager bossFightManager;
     public popUpText PopUpText;
+    string currentScene; 
     void Start()
     {
-        if (GameManager == null)
+        currentScene = SceneManager.GetActiveScene().name;
+        Debug.Log("Current Scene: " + currentScene);
+        if (currentScene == "level1" || currentScene == "level2")
         {
-            GameManager = FindObjectOfType<gameManager>();
+            if (GameManager == null)
+            {
+                GameManager = FindObjectOfType<gameManager>();
+            }
         }
+        else if (currentScene == "level3")
+        {
+            if (bossFightManager == null)
+            {
+                bossFightManager = FindObjectOfType<BossFightManager>();
+            }
+        }
+
+
+        
         if (PopUpText == null)
         {
             PopUpText = FindObjectOfType<popUpText>();
@@ -171,24 +188,6 @@ public class snakeMovement : MonoBehaviour
                
                 
             }
-            /*else if (other.CompareTag("enemy"))
-            {
-                if (bodyParts.Count-5 < 2)
-                {
-                    Death();
-                }
-                else
-                {          
-                    Debug.Log("Head collided with enemy");
-
-                    for (int i = 0; i < 5; i++)
-                    {
-                        deleteBody();
-                    }   
-                    Destroy(other.gameObject);
-                }
-            }*/
-            // Add a new body part if the head collides with a fruit
             else if (other.CompareTag("fruit"))
             {
                 //floatingTextPre.text = "+1";
@@ -201,8 +200,15 @@ public class snakeMovement : MonoBehaviour
             }
             else if (other.CompareTag("finish"))
             {
-                GameManager.Win();
-                
+                if (currentScene == "level1" || currentScene == "level2")
+                {
+                    GameManager.Win();
+                }
+                else if (currentScene == "level3")
+                {
+                    bossFightManager.Win();
+                }
+
             }
 
         }
@@ -243,13 +249,7 @@ public class snakeMovement : MonoBehaviour
             Debug.LogWarning("Not enough body parts to remove the second last element.");
         }
     }
-   /*  void ShowFloatingText()
-    {
-        Vector3 spawnPosition = transform.position + new Vector3(0, 5, 0);
-        Quaternion spawnRotation = Quaternion.Euler(90, 0, 0);
-
-        Instantiate(floatingTextPre, spawnPosition, spawnRotation);
-    }
-   */
+ 
+   
 
 }

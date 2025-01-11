@@ -71,6 +71,7 @@ public class gameManager : MonoBehaviour
         {
             bestTime = time;
             PlayerPrefs.SetFloat("BestTime", bestTime);
+            PlayerPrefs.Save();
         }
 
         winScoreText.text = "Time: " + time.ToString("F2") + " seconds" + "\n" +

@@ -321,7 +321,7 @@ PrefabInstance:
     - target: {fileID: 9221284755589322513, guid: 80b14d614013bb74a941378670a4d094, type: 3}
       propertyPath: GameManager
       value: 
-      objectReference: {fileID: 1059890131}
+      objectReference: {fileID: 0}
     - target: {fileID: 9221284755589322513, guid: 80b14d614013bb74a941378670a4d094, type: 3}
       propertyPath: youDiedText
       value: 
@@ -955,6 +955,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8581321745952410579, guid: c111b09c7e891db4988738ccaf73f323, type: 3}
+      propertyPath: m_text
+      value: 'TIME:
+
+        Best Time: '
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3447171802058153444, guid: c111b09c7e891db4988738ccaf73f323, type: 3}
@@ -1341,7 +1347,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7755071572226328664, guid: 7b053129976f0bc48a057f6a6716fac7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -1479,17 +1486,6 @@ MonoBehaviour:
   minimap: {fileID: 1140324641}
   minimapBackground: {fileID: 1732499063}
   BossCollisions: {fileID: 1098087491}
---- !u!114 &1059890131 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7755071572226328664, guid: 7b053129976f0bc48a057f6a6716fac7, type: 3}
-  m_PrefabInstance: {fileID: 971531563}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1059890127}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cedcf07b0ee797447a8bb95f9aa9d0d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1098087484 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5643415113087501459, guid: 00935d95e20c131459e6fbdb1762b4e8, type: 3}
@@ -1513,7 +1509,7 @@ MonoBehaviour:
   GreatEnemyFelled: {fileID: 1732514171}
   maxHealth: 100
   healthBar: {fileID: 646449366}
-  dmg: 15
+  dmg: 50
   isSlain: 0
 --- !u!1 &1140324641 stripped
 GameObject:
