@@ -6464,6 +6464,10 @@ PrefabInstance:
       value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 9221284755589322513, guid: 80b14d614013bb74a941378670a4d094, type: 3}
+      propertyPath: bodySize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9221284755589322513, guid: 80b14d614013bb74a941378670a4d094, type: 3}
       propertyPath: youDiedText
       value: 
       objectReference: {fileID: 1466694715}

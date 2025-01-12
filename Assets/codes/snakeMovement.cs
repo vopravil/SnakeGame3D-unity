@@ -19,6 +19,7 @@ public class snakeMovement : MonoBehaviour
     public int kills = 0;
     public TMPro.TextMeshProUGUI youDiedText;
     int rotation = 0;
+    public int bodySize = 10; 
     public gameManager GameManager;
     public BossFightManager bossFightManager;
     public popUpText PopUpText;
@@ -49,7 +50,7 @@ public class snakeMovement : MonoBehaviour
             PopUpText = FindObjectOfType<popUpText>();
         }
         rb = GetComponent<Rigidbody>();
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < bodySize; i++)
         {
             GrowBody();
         }
