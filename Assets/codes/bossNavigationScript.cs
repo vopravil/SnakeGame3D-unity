@@ -12,8 +12,9 @@ public class bossNavigationScript : MonoBehaviour
     public float radiusIncrement = 15f; // Amount to increase the radius
     public float incrementInterval = 30f; // Time interval for radius increment (in seconds)
     private float timeSinceLastIncrement; // Timer to track time
-
+    public GameObject enemyPrefab;
     public GameObject[] terrains; // Array of terrains
+    public GameObject[] spawnpoints;
     private int currentTerrainIndex = 0; // Tracks the active terrain
 
     // Start is called before the first frame update
@@ -25,6 +26,7 @@ public class bossNavigationScript : MonoBehaviour
 
         // Ensure only the first terrain is active at the start
         ActivateTerrain(0);
+        Instantiate(enemyPrefab, spawnpoints[0].transform.position, Quaternion.identity);
     }
 
     // Update is called once per frame
@@ -38,11 +40,16 @@ public class bossNavigationScript : MonoBehaviour
         {
             moveRadius += radiusIncrement; // Increase the movement radius
             timeSinceLastIncrement = 0f; // Reset the timer
-
+           
             // Switch to the next terrain if available
             if (currentTerrainIndex < terrains.Length - 1)
             {
+                
                 currentTerrainIndex++;
+                for (int i = 0; i <= currentTerrainIndex; i++)
+                {
+                    Instantiate(enemyPrefab, spawnpoints[i].transform.position, Quaternion.identity);
+                }
                 ActivateTerrain(currentTerrainIndex);
             }
         }

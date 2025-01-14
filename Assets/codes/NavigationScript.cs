@@ -4,18 +4,32 @@ using UnityEngine.AI;
 
 public class NavigationScript : MonoBehaviour
 {
-    public Transform player;
     private NavMeshAgent agent;
+    public Transform player;
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+
+        // Find the player automatically by tag
+        GameObject playerObject = GameObject.FindWithTag("head");
+        if (playerObject != null)
+        {
+            player = playerObject.transform;
+        }
+        else
+        {
+            Debug.LogError("Player object not found. Ensure the player has the 'Player' tag.");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        agent.destination = player.position;
+        if (player != null)
+        {
+            agent.destination = player.position;
+        }
     }
 }

@@ -55,6 +55,7 @@ public class BossFightManager : MonoBehaviour
             GreatEnemyFelled.gameObject.SetActive(true);
             greatEnemyFelledShown = true; // Set the flag to true.
             StartCoroutine(GreatEnemyFelledText());
+            DestroyAllEnemies();
         }
 
         if (SnakeMovement.collided)
@@ -102,5 +103,13 @@ public class BossFightManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         GreatEnemyFelled.gameObject.SetActive(false);
+    }
+    private void DestroyAllEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
     }
 }
