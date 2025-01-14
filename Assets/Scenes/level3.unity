@@ -2256,7 +2256,7 @@ MonoBehaviour:
   GreatEnemyFelled: {fileID: 1732514171}
   maxHealth: 100
   healthBar: {fileID: 646449366}
-  dmg: 50
+  dmg: 25
   isSlain: 0
 --- !u!114 &1098087497
 MonoBehaviour:
