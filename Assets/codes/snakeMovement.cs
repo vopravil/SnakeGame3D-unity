@@ -182,7 +182,7 @@ public class snakeMovement : MonoBehaviour
         if (gameObject.CompareTag("head"))
         {
             // Stop the snake if the head collides with the tail or body
-            if (other.CompareTag("tail") || other.CompareTag("body") || other.CompareTag("wall") || other.CompareTag("obstacle"))
+            if (other.CompareTag("tail") || other.CompareTag("body")  || other.CompareTag("obstacle"))
             {
                 Debug.Log("Head collided with tail or body or wall");
                 Death();
