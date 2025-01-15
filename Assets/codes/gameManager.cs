@@ -45,7 +45,7 @@ public class gameManager : MonoBehaviour
         // Increment the timer
         time += Time.deltaTime;
 
-        scoreText.text = "Time: " + time.ToString("F2") + "\n" + "Kills: " + SnakeMovement.kills + "\n" + "Bullets: " + SnakeShot.ballCount + "x" + "\n" + "Fruits: " + SnakeMovement.fruitCount + "x";
+        scoreText.text = "Time: " + time.ToString("F2") + "\n" + "Kills: " + SnakeMovement.kills + "\n" + "Bullets: " + SnakeShot.ballCount + "x" + "\n" + "Fruits: "   + SnakeMovement.fruitCount + " / " + fruitsForWin ;
 
         if (SnakeMovement.fruitCount >= fruitsForWin)
         {

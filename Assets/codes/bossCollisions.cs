@@ -60,7 +60,7 @@ public class bossCollisions : MonoBehaviour
     {
         currentHealth -= damage;
         Debug.Log("Current Health: " + currentHealth); // Debugging health value
-        if (currentHealth < 0)
+        if (currentHealth <= 0)
         {
             
             currentHealth = 0;

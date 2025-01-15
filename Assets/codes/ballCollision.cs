@@ -16,7 +16,7 @@ public class ballCollision : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("wall") || other.CompareTag("enemy"))
+        if (other.CompareTag("obstacle") || other.CompareTag("enemy"))
         {
             Debug.Log("Ball collided with wall/enemy");
             Destroy(gameObject);
