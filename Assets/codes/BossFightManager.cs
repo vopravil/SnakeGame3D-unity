@@ -20,7 +20,7 @@ public class BossFightManager : MonoBehaviour
     public GameObject minimapBackground; 
     public bossCollisions BossCollisions;
     private bool greatEnemyFelledShown = false;
-
+    private bool hasPlayedDefeatSound = false;
     private float time;
     private float bestTime;
 
@@ -58,14 +58,18 @@ public class BossFightManager : MonoBehaviour
             DestroyAllEnemies();
         }
 
-        if (SnakeMovement.collided)
+        if (SnakeMovement.collided && !hasPlayedDefeatSound)
         {
+            hasPlayedDefeatSound = true;
             StartCoroutine(Defeat());
+            FindObjectOfType<audioManager>().Play("Defeat");
+
         }
     }
 
     public void Win()
     {
+        FindObjectOfType<audioManager>().Play("Win");
         Time.timeScale = 0;
         winScreen.SetActive(true);
         scoreText.gameObject.SetActive(false);
