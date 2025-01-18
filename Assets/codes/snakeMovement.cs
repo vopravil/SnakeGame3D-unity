@@ -191,6 +191,7 @@ public class snakeMovement : MonoBehaviour
             }
             else if (other.CompareTag("fruit"))
             {
+                FindObjectOfType<audioManager>().Play("FruitPicked");
                 //floatingTextPre.text = "+1";
                 PopUpText.ShowFloatingText(transform.position + new Vector3(0, 5, 0), "+1F");
                 fruitCount++;

@@ -18,6 +18,7 @@ public class gameManager : MonoBehaviour
 
     private float time;
     private float bestTime;
+    private bool hasPlayedDefeatSound = false; // Flag to ensure "Defeat" sound is played only once.
 
     void Start()
     {
@@ -45,23 +46,25 @@ public class gameManager : MonoBehaviour
         // Increment the timer
         time += Time.deltaTime;
 
-        scoreText.text = "Time: " + time.ToString("F2") + "\n" + "Kills: " + SnakeMovement.kills + "\n" + "Bullets: " + SnakeShot.ballCount + "x" + "\n" + "Fruits: "   + SnakeMovement.fruitCount + " / " + fruitsForWin ;
+        scoreText.text = "Time: " + time.ToString("F2") + "\n" + "Kills: " + SnakeMovement.kills + "\n" + "Bullets: " + SnakeShot.ballCount + "x" + "\n" + "Fruits: " + SnakeMovement.fruitCount + " / " + fruitsForWin;
 
         if (SnakeMovement.fruitCount >= fruitsForWin)
         {
             darkCave.SetActive(false);
             goldCave.SetActive(true);
-
-         
         }
-        if (SnakeMovement.collided == true)
+
+        if (SnakeMovement.collided == true && !hasPlayedDefeatSound)
         {
+            hasPlayedDefeatSound = true; // Set the flag to true.
             StartCoroutine(Defeat());
+            FindObjectOfType<audioManager>().Play("Defeat");
         }
     }
 
     public void Win()
     {
+        FindObjectOfType<audioManager>().Play("Win");
         Time.timeScale = 0;
         winScreen.gameObject.SetActive(true);
         scoreText.gameObject.SetActive(false);
@@ -93,6 +96,4 @@ public class gameManager : MonoBehaviour
         minimap.gameObject.SetActive(false);
         minimapBackground.gameObject.SetActive(false);
     }
-
-  
 }

@@ -24,6 +24,7 @@ public class BulletCollision : MonoBehaviour
         {
             if (other.CompareTag("head"))
             {
+                FindObjectOfType<audioManager>().Play("BulletPicked");
                 GetComponent<SphereCollider>().enabled = false;
                 Destroy(gameObject);
                 PopUpText.ShowFloatingText(transform.position + new Vector3(0, 5, 0),"+1B");
@@ -37,11 +38,5 @@ public class BulletCollision : MonoBehaviour
         
     }
 
-    /*  void ShowFloatingText()
-    {
-        Vector3 spawnPosition = transform.position + new Vector3(0, 5, 0);
-        Quaternion spawnRotation = Quaternion.Euler(90, 0, 0);
-
-        Instantiate(floatingTextPre, spawnPosition, spawnRotation);
-    }*/
+    
 }
