@@ -19,13 +19,14 @@ public class ballCollision : MonoBehaviour
         if (other.CompareTag("obstacle") || other.CompareTag("enemy"))
         {
             Debug.Log("Ball collided with wall/enemy");
+            FindObjectOfType<audioManager>().Play("BulletCollision");
             Destroy(gameObject);
         }
         else if (other.CompareTag("body") || other.CompareTag("tail"))
         {
             Debug.Log("Ball collided with body/tail");
             Destroy(gameObject);
-
+            FindObjectOfType<audioManager>().Play("BulletCollision");
             if (SnakeMovement != null)
             {
                 SnakeMovement.Death();

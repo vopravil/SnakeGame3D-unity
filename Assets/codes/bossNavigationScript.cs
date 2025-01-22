@@ -40,7 +40,7 @@ public class bossNavigationScript : MonoBehaviour
         {
             moveRadius += radiusIncrement; // Increase the movement radius
             timeSinceLastIncrement = 0f; // Reset the timer
-           
+            FindObjectOfType<audioManager>().Play("BossLaugh");
             // Switch to the next terrain if available
             if (currentTerrainIndex < terrains.Length - 1)
             {
