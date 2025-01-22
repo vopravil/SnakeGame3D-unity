@@ -59,11 +59,13 @@ public class gameManager : MonoBehaviour
             hasPlayedDefeatSound = true; // Set the flag to true.
             StartCoroutine(Defeat());
             FindObjectOfType<audioManager>().Play("Defeat");
+            FindObjectOfType<GunCamera>().AfterGameCam();
         }
     }
 
     public void Win()
     {
+        FindObjectOfType<GunCamera>().AfterGameCam();
         FindObjectOfType<audioManager>().Play("Win");
         Time.timeScale = 0;
         winScreen.gameObject.SetActive(true);

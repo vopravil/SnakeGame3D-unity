@@ -22,6 +22,7 @@ public class GunCamera : MonoBehaviour
     private bool gunCamView = false;
     private float verticalRotation = 0f;
     private float horizontalRotation = 0f;
+    private bool gameEnded = false;
 
     void Start()
     {
@@ -33,7 +34,7 @@ public class GunCamera : MonoBehaviour
     void Update()
     {
         // Toggle between gun camera and main camera
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1) && gameEnded == false)
         {
             gunCamView = !gunCamView; // Toggle the camera state
 
@@ -48,6 +49,8 @@ public class GunCamera : MonoBehaviour
             cam.SetActive(gunCamView);
             mainCam.SetActive(!gunCamView);
         }
+
+
 
         // Rotate the gun camera when it's active
         if (gunCamView)
@@ -72,5 +75,12 @@ public class GunCamera : MonoBehaviour
 
         // Apply clamped rotations
         cam.transform.localEulerAngles = new Vector3(verticalRotation, horizontalRotation, 0f);
+    }
+
+    public void AfterGameCam()
+    {
+        cam.SetActive(false);
+        mainCam.SetActive(true);
+        gameEnded = true;
     }
 }

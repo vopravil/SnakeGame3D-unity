@@ -63,12 +63,14 @@ public class BossFightManager : MonoBehaviour
             hasPlayedDefeatSound = true;
             StartCoroutine(Defeat());
             FindObjectOfType<audioManager>().Play("Defeat");
+            FindObjectOfType<GunCamera>().AfterGameCam();
 
         }
     }
 
     public void Win()
     {
+        FindObjectOfType<GunCamera>().AfterGameCam();
         FindObjectOfType<audioManager>().Play("Win");
         Time.timeScale = 0;
         winScreen.SetActive(true);
