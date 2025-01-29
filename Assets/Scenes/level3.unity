@@ -2434,7 +2434,7 @@ MonoBehaviour:
   player: {fileID: 1705930464}
   moveRadius: 10
   radiusIncrement: 14
-  incrementInterval: 5
+  incrementInterval: 15
   enemyPrefab: {fileID: 2250216836648072774, guid: be2fb0fa855f56841b3a337f224d2b6b, type: 3}
   terrains:
   - {fileID: 132450371}
