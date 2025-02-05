@@ -11,8 +11,7 @@ public class snakeMovement : MonoBehaviour
     public List<GameObject> bodyParts = new List<GameObject>();
     public GameObject bodyPrefab;
     public GameObject tailPrefab;
-    public int gap = 5;  // Controls the spacing between body parts
-    private List<Vector3> positionList = new List<Vector3>();
+    public int gap = 5;     private List<Vector3> positionList = new List<Vector3>();
     private List<Quaternion> rotationList = new List<Quaternion>();
     public bool collided = false;
     public int fruitCount = 0;
@@ -98,12 +97,10 @@ public class snakeMovement : MonoBehaviour
         Vector3 forwardMovement = transform.forward * moveSpeed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + forwardMovement);
 
-        // Record position and rotation
-        positionList.Insert(0, transform.position);
+               positionList.Insert(0, transform.position);
         rotationList.Insert(0, transform.rotation);
 
-        // Limit the history to prevent excessive memory use
-        if (positionList.Count > 1000)
+               if (positionList.Count > 1000)
         {
             positionList.RemoveAt(positionList.Count - 1);
             rotationList.RemoveAt(rotationList.Count - 1);
@@ -114,8 +111,7 @@ public class snakeMovement : MonoBehaviour
     {
         double followIndex = 0;
        
-        // Set the initial gap offset for each body part based on its index
-        for (int i = 0; i < bodyParts.Count; i++)
+               for (int i = 0; i < bodyParts.Count; i++)
         {
            
             if (collided is false)
@@ -153,15 +149,13 @@ public class snakeMovement : MonoBehaviour
     {
         GameObject body = Instantiate(bodyPrefab);
 
-        // Set the new body part�s position to match the position of the last body part
-        if (bodyParts.Count > 0)
+               if (bodyParts.Count > 0)
         {
             body.transform.position = bodyParts[bodyParts.Count - 1].transform.position;
             body.transform.rotation = bodyParts[bodyParts.Count - 1].transform.rotation;
         }
 
-        // Insert the new body part at the second-to-last position
-        if (bodyParts.Count > 1)
+               if (bodyParts.Count > 1)
         {
             bodyParts.Insert(bodyParts.Count - 1, body);
         }
@@ -181,8 +175,7 @@ public class snakeMovement : MonoBehaviour
     {
         if (gameObject.CompareTag("head"))
         {
-            // Stop the snake if the head collides with the tail or body
-            if (other.CompareTag("tail") || other.CompareTag("body")  || other.CompareTag("obstacle"))
+                       if (other.CompareTag("tail") || other.CompareTag("body")  || other.CompareTag("obstacle"))
             {
                 Debug.Log("Head collided with tail or body or wall");
                 Death();
@@ -192,14 +185,11 @@ public class snakeMovement : MonoBehaviour
             else if (other.CompareTag("fruit"))
             {
                 FindObjectOfType<audioManager>().Play("FruitPicked");
-                //floatingTextPre.text = "+1";
-                PopUpText.ShowFloatingText(transform.position + new Vector3(0, 5, 0), "+1F");
+                               PopUpText.ShowFloatingText(transform.position + new Vector3(0, 5, 0), "+1F");
                 fruitCount++;
                
                 Debug.Log("Head collided with fruit");
-                GrowBody();  // Adds a new body part
-                Destroy(other.gameObject);  // Removes the fruit object from the scene
-            }
+                GrowBody();                 Destroy(other.gameObject);             }
             else if (other.CompareTag("finish"))
             {
                 if (currentScene == "level1" || currentScene == "level2")

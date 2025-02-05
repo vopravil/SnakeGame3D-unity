@@ -14,8 +14,7 @@ namespace BgTools.Utils
             public static Color Yellow =    new Color(1.00f, 1.00f, 0.00f);
             public static Color Blue =      new Color(0.00f, 0.63f, 0.99f);
         }
-        #endregion // Colors
-
+        #endregion
         #region Texture manager
         static Dictionary<long, Texture2D> mTextures = new Dictionary<long, Texture2D>();
 

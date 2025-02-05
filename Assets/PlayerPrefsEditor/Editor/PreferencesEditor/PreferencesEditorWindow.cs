@@ -21,8 +21,7 @@ namespace BgTools.PlayerPrefsEditor
 #region ErrorValues
         private readonly int ERROR_VALUE_INT = int.MinValue;
         private readonly string ERROR_VALUE_STR = "<bgTool_error_24072017>";
-        #endregion //ErrorValues
-
+        #endregion
         private enum PreferencesEntrySortOrder
         {
             None = 0,
@@ -79,8 +78,7 @@ namespace BgTools.PlayerPrefsEditor
             window.minSize = new Vector2(270.0f, 300.0f);
             window.name = "Prefs Editor";
 
-            //window.titleContent = EditorGUIUtility.IconContent("SettingsIcon"); // Icon
-
+           
             window.Show();
         }
 
@@ -109,17 +107,14 @@ namespace BgTools.PlayerPrefsEditor
             searchfield = new MySearchField();
             searchfield.DropdownSelectionDelegate = () => { PrepareData(); };
 
-            // Fix for serialisation issue of static fields
-            if (userDefList == null)
+                       if (userDefList == null)
             {
                 InitReorderedList();
                 PrepareData();
             }
         }
 
-        // Handel view updates for monitored changes
-        // Necessary to avoid main thread access issue
-        private void Update()
+                      private void Update()
         {
             if (showLoadingIndicatorOverlay)
             {
@@ -180,8 +175,7 @@ namespace BgTools.PlayerPrefsEditor
 
                 SerializedProperty value;
 
-                // Load only necessary type
-                switch ((PreferenceEntry.PrefTypes)type.enumValueIndex)
+                               switch ((PreferenceEntry.PrefTypes)type.enumValueIndex)
                 {
                     case PreferenceEntry.PrefTypes.Float:
                         value = element.FindPropertyRelative("m_floatValue");
@@ -303,8 +297,7 @@ namespace BgTools.PlayerPrefsEditor
 
                 SerializedProperty value;
 
-                // Load only necessary type
-                switch ((PreferenceEntry.PrefTypes)type.enumValueIndex)
+                               switch ((PreferenceEntry.PrefTypes)type.enumValueIndex)
                 {
                     case PreferenceEntry.PrefTypes.Float:
                         value = element.FindPropertyRelative("m_floatValue");
@@ -378,8 +371,7 @@ namespace BgTools.PlayerPrefsEditor
 
         void OnGUI()
         {
-            // Need to catch 'Stack empty' error on linux
-            try
+                       try
             {
                 if (showLoadingIndicatorOverlay)
                 {
@@ -526,8 +518,7 @@ namespace BgTools.PlayerPrefsEditor
             CreatePrefEntries(userDef, ref prefEntryHolder.userDefList);
             CreatePrefEntries(unityDef, ref prefEntryHolder.unityDefList);
 
-            // Clear cache
-            userDefListCache = new SerializedProperty[prefEntryHolder.userDefList.Count];
+                       userDefListCache = new SerializedProperty[prefEntryHolder.userDefList.Count];
         }
 
         private void CreatePrefEntries(string[] keySource, ref List<PreferenceEntry> listDest)
@@ -591,10 +582,8 @@ namespace BgTools.PlayerPrefsEditor
         {
             string[] keys = entryAccessor.GetKeys(reloadKeys);
 
-            //keys.ToList().ForEach( e => { Debug.Log(e); } );
-
-            // Seperate keys int unity defined and user defined
-            Dictionary<bool, List<string>> groups = keys
+           
+                       Dictionary<bool, List<string>> groups = keys
                 .GroupBy( (key) => key.StartsWith("unity.") || key.StartsWith("UnityGraphicsQuality") )
                 .ToDictionary( (g) => g.Key, (g) => g.ToList() );
 
@@ -619,8 +608,7 @@ namespace BgTools.PlayerPrefsEditor
             string normalizedFileName = unsafeFileName.Trim().Normalize(NormalizationForm.FormD);
             StringBuilder stringBuilder = new StringBuilder();
 
-            // We need to use a TextElementEmumerator in order to support UTF16 characters that may take up more than one char(case 1169358)
-            TextElementEnumerator charEnum = StringInfo.GetTextElementEnumerator(normalizedFileName);
+                       TextElementEnumerator charEnum = StringInfo.GetTextElementEnumerator(normalizedFileName);
             while (charEnum.MoveNext())
             {
                 string c = charEnum.GetTextElement();
@@ -657,8 +645,7 @@ public class MySearchField : SearchField
         style.padding.left = 17;
         Rect ContextMenuRect = new Rect(rect.x, rect.y, 10, rect.height);
 
-        // Add interactive area
-        EditorGUIUtility.AddCursorRect(ContextMenuRect, MouseCursor.Text);
+               EditorGUIUtility.AddCursorRect(ContextMenuRect, MouseCursor.Text);
         if (Event.current.type == EventType.MouseDown && ContextMenuRect.Contains(Event.current.mousePosition))
         {
             void OnDropdownSelection(object parameter)
@@ -677,11 +664,9 @@ public class MySearchField : SearchField
             menu.DropDown(rect);
         }
 
-        // Render original search field
-        String result = base.OnGUI(rect, text, style, cancelButtonStyle, emptyCancelButtonStyle);
+               String result = base.OnGUI(rect, text, style, cancelButtonStyle, emptyCancelButtonStyle);
 
-        // Render additional images
-        GUIStyle ContexMenuOverlayStyle = GUIStyle.none;
+               GUIStyle ContexMenuOverlayStyle = GUIStyle.none;
         ContexMenuOverlayStyle.contentOffset = new Vector2(9, 5);
         GUI.Box(new Rect(rect.x, rect.y, 5, 5), EditorGUIUtility.IconContent("d_ProfilerTimelineDigDownArrow@2x"), ContexMenuOverlayStyle);
 

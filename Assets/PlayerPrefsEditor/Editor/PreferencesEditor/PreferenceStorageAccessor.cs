@@ -95,8 +95,7 @@ namespace BgTools.PlayerPrefsEditor
                 }
             }
 
-            // Clean <key>_h3320113488 nameing
-            cachedData = cachedData.Select((key) => { return key.Substring(0, key.LastIndexOf("_h", StringComparison.Ordinal)); }).ToArray();
+                       cachedData = cachedData.Select((key) => { return key.Substring(0, key.LastIndexOf("_h", StringComparison.Ordinal)); }).ToArray();
 
             EncodeAnsiInPlace();
         }
@@ -198,17 +197,14 @@ namespace BgTools.PlayerPrefsEditor
             fileWatcher.NotifyFilter = NotifyFilters.LastWrite;
             fileWatcher.Filter = Path.GetFileName(prefPath);
 
-            // MAC delete the old and create a new file instead of updating
-            fileWatcher.Created += OnWatchedFileChanged;
+                       fileWatcher.Created += OnWatchedFileChanged;
         }
 
         protected override void FetchKeysFromSystem()
         {
-            // Workaround to avoid incomplete tmp phase from MAC OS
-            foreach (FileInfo info in prefsDirInfo.GetFiles())
+                       foreach (FileInfo info in prefsDirInfo.GetFiles())
             {
-                // Check if tmp PlayerPrefs file exist
-                if (info.FullName.Contains(prefsFileNameWithoutExtension) && !info.FullName.EndsWith(".plist"))
+                               if (info.FullName.Contains(prefsFileNameWithoutExtension) && !info.FullName.EndsWith(".plist"))
                 {
                     StartLoadingDelegate();
                     return;

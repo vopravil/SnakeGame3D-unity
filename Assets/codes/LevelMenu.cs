@@ -19,8 +19,7 @@ public class LevelMenu : MonoBehaviour
             buttons[i].interactable = true;
         }
     }
-    // Start is called before the first frame update
-    public void OpenLevel(int levelid)
+       public void OpenLevel(int levelid)
     {
         string levelName = "level" + levelid;
         Time.timeScale = 1;

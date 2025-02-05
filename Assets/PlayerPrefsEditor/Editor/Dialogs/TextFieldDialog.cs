@@ -109,8 +109,7 @@ namespace BgTools.Dialogs
 
             GUILayout.Space(20);
 
-            // set focus only if element exist
-            try
+                       try
             { 
                 EditorGUI.FocusTextInControl(name+"_textInput");
             }

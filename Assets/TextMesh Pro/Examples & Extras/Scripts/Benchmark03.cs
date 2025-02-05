@@ -26,8 +26,7 @@ namespace TMPro.Examples
         {
             TMP_FontAsset fontAsset = null;
 
-            // Create Dynamic Font Asset for the given font file.
-            switch (Benchmark)
+                       switch (Benchmark)
             {
                 case BenchmarkType.TMP_SDF_MOBILE:
                     fontAsset = TMP_FontAsset.CreateFontAsset(SourceFont, 90, 9, GlyphRenderMode.SDFAA, 256, 256, AtlasPopulationMode.Dynamic);

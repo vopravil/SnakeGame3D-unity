@@ -13,8 +13,7 @@ public class BossFightManager : MonoBehaviour
     public GameObject darkCave;
     public GameObject goldCave;
     public int fruitsForWin = 6;
-    public TMPro.TextMeshProUGUI scoreText; // Correct type for UI text.
-    public TMPro.TextMeshProUGUI winScoreText;
+    public TMPro.TextMeshProUGUI scoreText;    public TMPro.TextMeshProUGUI winScoreText;
     public TMPro.TextMeshProUGUI GreatEnemyFelled;
     public GameObject minimap;
     public GameObject minimapBackground; 
@@ -23,9 +22,12 @@ public class BossFightManager : MonoBehaviour
     private bool hasPlayedDefeatSound = false;
     private float time;
     private float bestTime;
+    public GameObject pauseScreen;
+    GameObject varGameObject;
 
     void Start()
     {
+        varGameObject = GameObject.Find("player");
         darkCave.SetActive(true);
         goldCave.SetActive(false);
 
@@ -35,26 +37,21 @@ public class BossFightManager : MonoBehaviour
         SnakeMovement = FindObjectOfType<snakeMovement>();
         SnakeShot = FindObjectOfType<snakeShot>();
 
-        // Initialize time variables
-        time = 0;
-        bestTime = PlayerPrefs.GetFloat("BestTime", -1); // Default to -1
-       
+               time = 0;
+        bestTime = PlayerPrefs.GetFloat("BestTime", -1);       
     }
 
     void Update()
     {
-        // Increment the timer
-        time += Time.deltaTime;
+               time += Time.deltaTime;
 
         scoreText.text = "Time: " + time.ToString("F2") + "\n" + "Bullets: " + SnakeShot.ballCount + "x";
 
-        if (BossCollisions.isSlain && !greatEnemyFelledShown) // Ensure the coroutine runs only once.
-        {
+        if (BossCollisions.isSlain && !greatEnemyFelledShown)        {
             darkCave.SetActive(false);
             goldCave.SetActive(true);
             GreatEnemyFelled.gameObject.SetActive(true);
-            greatEnemyFelledShown = true; // Set the flag to true.
-            StartCoroutine(GreatEnemyFelledText());
+            greatEnemyFelledShown = true;            StartCoroutine(GreatEnemyFelledText());
             DestroyAllEnemies();
         }
 
@@ -64,6 +61,14 @@ public class BossFightManager : MonoBehaviour
             StartCoroutine(Defeat());
             FindObjectOfType<audioManager>().Play("Defeat");
             FindObjectOfType<GunCamera>().AfterGameCam();
+
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && SnakeMovement.collided == false)
+        {
+
+            varGameObject.GetComponent<snakeShot>().enabled = false;
+            pauseScreen.SetActive(true);
+            Time.timeScale = 0;
 
         }
     }
@@ -79,8 +84,7 @@ public class BossFightManager : MonoBehaviour
         Debug.Log("Current Time: " + time);
         Debug.Log("Best Time Before Update: " + bestTime);
 
-        // Update best time if applicable
-        if (time < bestTime || bestTime < 0)
+               if (time < bestTime || bestTime < 0)
         {
             bestTime = time;
             PlayerPrefs.SetFloat("BestTime", bestTime);

@@ -108,13 +108,8 @@ SubShader {
 			float4	vertex			: SV_POSITION;
 			fixed4	faceColor		: COLOR;
 			fixed4	outlineColor	: COLOR1;
-			float4	texcoord0		: TEXCOORD0;			// Texture UV, Mask UV
-			half4	param			: TEXCOORD1;			// Scale(x), BiasIn(y), BiasOut(z), Bias(w)
-			half4	mask			: TEXCOORD2;			// Position in clip space(xy), Softness(zw)
-			#if (UNDERLAY_ON | UNDERLAY_INNER)
-			float4	texcoord1		: TEXCOORD3;			// Texture UV, alpha, reserved
-			half2	underlayParam	: TEXCOORD4;			// Scale(x), Bias(y)
-			#endif
+			float4	texcoord0		: TEXCOORD0;					half4	param			: TEXCOORD1;					half4	mask			: TEXCOORD2;					#if (UNDERLAY_ON | UNDERLAY_INNER)
+			float4	texcoord1		: TEXCOORD3;					half2	underlayParam	: TEXCOORD4;					#endif
 		};
 
 
@@ -172,12 +167,10 @@ SubShader {
 			float2 layerOffset = float2(x, y);
 			#endif
 
-			// Generate UV for the Masking Texture
-			float4 clampedRect = clamp(_ClipRect, -2e10, 2e10);
+					float4 clampedRect = clamp(_ClipRect, -2e10, 2e10);
 			float2 maskUV = (vert.xy - clampedRect.xy) / (clampedRect.zw - clampedRect.xy);
 
-			// Populate structure for pixel shader
-			output.vertex = vPosition;
+					output.vertex = vPosition;
 			output.faceColor = faceColor;
 			output.outlineColor = outlineColor;
 			output.texcoord0 = float4(input.texcoord0.x, input.texcoord0.y, maskUV.x, maskUV.y);
@@ -192,8 +185,7 @@ SubShader {
 		}
 
 
-		// PIXEL SHADER
-		fixed4 PixShader(pixel_t input) : SV_Target
+			fixed4 PixShader(pixel_t input) : SV_Target
 		{
 			UNITY_SETUP_INSTANCE_ID(input);
 
@@ -216,8 +208,7 @@ SubShader {
 			c += float4(_UnderlayColor.rgb * _UnderlayColor.a, _UnderlayColor.a) * (1 - saturate(d - input.underlayParam.y)) * sd * (1 - c.a);
 			#endif
 
-			// Alternative implementation to UnityGet2DClipping with support for softness.
-			#if UNITY_UI_CLIP_RECT
+					#if UNITY_UI_CLIP_RECT
 			half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(input.mask.xy)) * input.mask.zw);
 			c *= m.x * m.y;
 			#endif

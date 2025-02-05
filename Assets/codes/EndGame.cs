@@ -6,8 +6,7 @@ public class EndGame : MonoBehaviour
 {
     public int nextLevel = 0;
 
-    // Update is called once per frame
-    void Update()
+       void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {

@@ -9,8 +9,7 @@ namespace BgTools.Utils
 {
     public class ImageManager
     {
-        // Keep this ID unique
-        private static readonly string ID = "[PlayerPrefsEditor] com.bgtools.playerprefseditor";
+               private static readonly string ID = "[PlayerPrefsEditor] com.bgtools.playerprefseditor";
 
         private static string imageManagerPath;
         private static string GetAssetDir()
@@ -27,8 +26,7 @@ namespace BgTools.Utils
 
                 if (fileName.Equals("ImageManager.cs"))
                 {
-                    // Check ID if it's the correct ImageManager
-                    if (File.ReadLines(Path.GetFullPath(assetPath)).Any(line => line.Contains(ID)))
+                                       if (File.ReadLines(Path.GetFullPath(assetPath)).Any(line => line.Contains(ID)))
                     {
                         imageManagerPath = Path.GetDirectoryName(assetPath) + Path.DirectorySeparatorChar;
                         return imageManagerPath;

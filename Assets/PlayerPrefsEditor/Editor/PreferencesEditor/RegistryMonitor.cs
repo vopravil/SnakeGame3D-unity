@@ -44,49 +44,18 @@ namespace BgTools.PlayerPrefsEditor
 
         #region Event handling
 
-        /// <summary>
-        /// Occurs when the specified registry key has changed.
-        /// </summary>
-        public event EventHandler RegChanged;
+                             public event EventHandler RegChanged;
 
-        /// <summary>
-        /// Raises the <see cref="RegChanged"/> event.
-        /// </summary>
-        /// <remarks>
-        /// <p>
-        /// <b>OnRegChanged</b> is called when the specified registry key has changed.
-        /// </p>
-        /// <note type="inheritinfo">
-        /// When overriding <see cref="OnRegChanged"/> in a derived class, be sure to call
-        /// the base class's <see cref="OnRegChanged"/> method.
-        /// </note>
-        /// </remarks>
-        protected virtual void OnRegChanged()
+                                                                                            protected virtual void OnRegChanged()
         {
             EventHandler handler = RegChanged;
             if (handler != null)
                 handler(this, null);
         }
 
-        /// <summary>
-        /// Occurs when the access to the registry fails.
-        /// </summary>
-        public event ErrorEventHandler Error;
+                             public event ErrorEventHandler Error;
 
-        /// <summary>
-        /// Raises the <see cref="Error"/> event.
-        /// </summary>
-        /// <param name="e">The <see cref="Exception"/> which occured while watching the registry.</param>
-        /// <remarks>
-        /// <p>
-        /// <b>OnError</b> is called when an exception occurs while watching the registry.
-        /// </p>
-        /// <note type="inheritinfo">
-        /// When overriding <see cref="OnError"/> in a derived class, be sure to call
-        /// the base class's <see cref="OnError"/> method.
-        /// </note>
-        /// </remarks>
-        protected virtual void OnError(Exception e)
+                                                                                                   protected virtual void OnError(Exception e)
         {
             ErrorEventHandler handler = Error;
             if (handler != null)
@@ -108,20 +77,12 @@ namespace BgTools.PlayerPrefsEditor
 
         #endregion
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RegistryMonitor"/> class.
-        /// </summary>
-        /// <param name="registryKey">The registry key to monitor.</param>
-        public RegistryMonitor(RegistryKey registryKey)
+                                    public RegistryMonitor(RegistryKey registryKey)
         {
             InitRegistryKey(registryKey.Name);
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RegistryMonitor"/> class.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        public RegistryMonitor(string name)
+                                    public RegistryMonitor(string name)
         {
             if (name == null || name.Length == 0)
                 throw new ArgumentNullException("name");
@@ -129,30 +90,19 @@ namespace BgTools.PlayerPrefsEditor
             InitRegistryKey(name);
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RegistryMonitor"/> class.
-        /// </summary>
-        /// <param name="registryHive">The registry hive.</param>
-        /// <param name="subKey">The sub key.</param>
-        public RegistryMonitor(RegistryHive registryHive, string subKey)
+                                           public RegistryMonitor(RegistryHive registryHive, string subKey)
         {
             InitRegistryKey(registryHive, subKey);
         }
 
-        /// <summary>
-        /// Disposes this object.
-        /// </summary>
-        public void Dispose()
+                             public void Dispose()
         {
             Stop();
             _disposed = true;
             GC.SuppressFinalize(this);
         }
 
-        /// <summary>
-        /// Gets or sets the <see cref="RegChangeNotifyFilter">RegChangeNotifyFilter</see>.
-        /// </summary>
-        public RegChangeNotifyFilter RegChangeNotifyFilter
+                             public RegChangeNotifyFilter RegChangeNotifyFilter
         {
             get { return _regFilter; }
             set
@@ -246,19 +196,12 @@ namespace BgTools.PlayerPrefsEditor
 
         #endregion
 
-        /// <summary>
-        /// <b>true</b> if this <see cref="RegistryMonitor"/> object is currently monitoring;
-        /// otherwise, <b>false</b>.
-        /// </summary>
-        public bool IsMonitoring
+                                    public bool IsMonitoring
         {
             get { return _thread != null; }
         }
 
-        /// <summary>
-        /// Start monitoring.
-        /// </summary>
-        public void Start()
+                             public void Start()
         {
             if (_disposed)
                 throw new ObjectDisposedException(null, "This instance is already disposed");
@@ -274,10 +217,7 @@ namespace BgTools.PlayerPrefsEditor
             }
         }
 
-        /// <summary>
-        /// Stops the monitoring thread.
-        /// </summary>
-        public void Stop()
+                             public void Stop()
         {
             if (_disposed)
                 throw new ObjectDisposedException(null, "This instance is already disposed");
@@ -343,22 +283,12 @@ namespace BgTools.PlayerPrefsEditor
         }
     }
 
-    /// <summary>
-    /// Filter for notifications reported by <see cref="RegistryMonitor"/>.
-    /// </summary>
-    [Flags]
+             [Flags]
     public enum RegChangeNotifyFilter
     {
-        /// <summary>Notify the caller if a subkey is added or deleted.</summary>
-        Key = 1,
-        /// <summary>Notify the caller of changes to the attributes of the key,
-        /// such as the security descriptor information.</summary>
-        Attribute = 2,
-        /// <summary>Notify the caller of changes to a value of the key. This can
-        /// include adding or deleting a value, or changing an existing value.</summary>
-        Value = 4,
-        /// <summary>Notify the caller of changes to the security descriptor
-        /// of the key.</summary>
-        Security = 8,
+               Key = 1,
+                      Attribute = 2,
+                      Value = 4,
+                      Security = 8,
     }
 }

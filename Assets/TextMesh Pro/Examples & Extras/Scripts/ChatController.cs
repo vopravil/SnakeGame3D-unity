@@ -24,8 +24,7 @@ public class ChatController : MonoBehaviour {
 
     void AddToChatOutput(string newText)
     {
-        // Clear Input Field
-        ChatInputField.text = string.Empty;
+               ChatInputField.text = string.Empty;
 
         var timeNow = System.DateTime.Now;
 
@@ -33,19 +32,15 @@ public class ChatController : MonoBehaviour {
 
         if (ChatDisplayOutput != null)
         {
-            // No special formatting for first entry
-            // Add line feed before each subsequent entries
-            if (ChatDisplayOutput.text == string.Empty)
+                                  if (ChatDisplayOutput.text == string.Empty)
                 ChatDisplayOutput.text = formattedInput;
             else
                 ChatDisplayOutput.text += "\n" + formattedInput;
         }
 
-        // Keep Chat input field active
-        ChatInputField.ActivateInputField();
+               ChatInputField.ActivateInputField();
 
-        // Set the scrollbar to the bottom when next text is submitted.
-        ChatScrollbar.value = 0;
+               ChatScrollbar.value = 0;
     }
 
 }

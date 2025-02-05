@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class gameManager : MonoBehaviour
@@ -8,20 +9,20 @@ public class gameManager : MonoBehaviour
     public snakeShot SnakeShot;
     public GameObject winScreen;
     public GameObject defeatScreen;
+    public GameObject pauseScreen;
     public GameObject darkCave;
     public GameObject goldCave;
     public int fruitsForWin = 6;
-    public TMPro.TextMeshProUGUI scoreText; // Correct type for UI text.
-    public TMPro.TextMeshProUGUI winScoreText;
+    public TMPro.TextMeshProUGUI scoreText;    public TMPro.TextMeshProUGUI winScoreText;
     public GameObject minimap;
     public GameObject minimapBackground;
-
+    GameObject varGameObject; 
     private float time;
     private float bestTime;
-    private bool hasPlayedDefeatSound = false; // Flag to ensure "Defeat" sound is played only once.
-
+    private bool hasPlayedDefeatSound = false;
     void Start()
     {
+        varGameObject = GameObject.Find("player");
         darkCave.SetActive(true);
         goldCave.SetActive(false);
         if (winScreen != null) winScreen.SetActive(false);
@@ -36,15 +37,21 @@ public class gameManager : MonoBehaviour
             SnakeShot = FindObjectOfType<snakeShot>();
         }
 
-        // Initialize time variables
-        time = 0;
+               time = 0;
         bestTime = PlayerPrefs.GetFloat("BestTime", float.MaxValue);
     }
 
     void Update()
     {
-        // Increment the timer
-        time += Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Escape) && SnakeMovement.collided == false)
+        {
+
+            varGameObject.GetComponent<snakeShot>().enabled = false;
+            pauseScreen.SetActive(true);
+            Time.timeScale = 0;
+            
+        }
+               time += Time.deltaTime;
 
         scoreText.text = "Time: " + time.ToString("F2") + "\n" + "Kills: " + SnakeMovement.kills + "\n" + "Bullets: " + SnakeShot.ballCount + "x" + "\n" + "Fruits: " + SnakeMovement.fruitCount + " / " + fruitsForWin;
 
@@ -56,8 +63,7 @@ public class gameManager : MonoBehaviour
 
         if (SnakeMovement.collided == true && !hasPlayedDefeatSound)
         {
-            hasPlayedDefeatSound = true; // Set the flag to true.
-            StartCoroutine(Defeat());
+            hasPlayedDefeatSound = true;            StartCoroutine(Defeat());
             FindObjectOfType<audioManager>().Play("Defeat");
             FindObjectOfType<GunCamera>().AfterGameCam();
         }
@@ -71,8 +77,7 @@ public class gameManager : MonoBehaviour
         winScreen.gameObject.SetActive(true);
         scoreText.gameObject.SetActive(false);
 
-        // Check for best time
-        if (time < bestTime)
+               if (time < bestTime)
         {
             bestTime = time;
             PlayerPrefs.SetFloat("BestTime", bestTime);

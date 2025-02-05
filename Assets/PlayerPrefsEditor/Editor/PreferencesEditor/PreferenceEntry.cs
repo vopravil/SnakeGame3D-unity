@@ -13,8 +13,7 @@
         public PrefTypes m_typeSelection;
         public string m_key;
 
-        // Need diffrend ones for auto type selection of serilizedProerty
-        public string m_strValue;
+               public string m_strValue;
         public int m_intValue;
         public float m_floatValue;
 

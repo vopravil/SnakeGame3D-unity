@@ -4,12 +4,10 @@ using UnityEngine.Audio;
 
 public class audioManager : MonoBehaviour
 {
-    public Sound[] sounds; // Array of sounds.
-
+    public Sound[] sounds;
     void Awake()
     {
-        // Add an AudioSource component for each sound.
-        foreach (Sound s in sounds)
+               foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
@@ -19,8 +17,7 @@ public class audioManager : MonoBehaviour
         }
     }
 
-    // Method to play a sound by name.
-    public void Play(string name)
+       public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
@@ -33,20 +30,13 @@ public class audioManager : MonoBehaviour
 }
 
 // Move the Sound class outside of the audioManager class
-[System.Serializable] // This attribute makes it show up in the Inspector.
-public class Sound
+[System.Serializable]public class Sound
 {
-    public string name; // Name of the sound.
-    public AudioClip clip; // The audio file.
-
+    public string name;    public AudioClip clip;
     [Range(0f, 1f)]
-    public float volume = 0.5f; // Volume level.
-
+    public float volume = 0.5f;
     [Range(0.1f, 3f)]
-    public float pitch = 1f; // Pitch level.
-
-    public bool loop; // Whether the sound should loop.
-
-    [HideInInspector] // This is assigned dynamically, so hide it in the Inspector.
-    public AudioSource source;
+    public float pitch = 1f;
+    public bool loop;
+    [HideInInspector]    public AudioSource source;
 }

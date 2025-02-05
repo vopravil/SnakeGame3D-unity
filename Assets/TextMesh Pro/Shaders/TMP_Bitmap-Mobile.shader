@@ -96,10 +96,8 @@ SubShader {
 			OUT.texcoord0 = v.texcoord0;
 
 			float2 pixelSize = OUT.vertex.w;
-			//pixelSize /= abs(float2(_ScreenParams.x * UNITY_MATRIX_P[0][0], _ScreenParams.y * UNITY_MATRIX_P[1][1]));
-
-			// Clamp _ClipRect to 16bit.
-			float4 clampedRect = clamp(_ClipRect, -2e10, 2e10);
+		
+					float4 clampedRect = clamp(_ClipRect, -2e10, 2e10);
 			OUT.mask = float4(vert.xy * 2 - clampedRect.xy - clampedRect.zw, 0.25 / (0.25 * half2(_MaskSoftnessX, _MaskSoftnessY) + pixelSize.xy));
 
 			return OUT;
@@ -109,8 +107,7 @@ SubShader {
 		{
 			fixed4 color = fixed4(IN.color.rgb, IN.color.a * tex2D(_MainTex, IN.texcoord0).a);
 
-			// Alternative implementation to UnityGet2DClipping with support for softness.
-			#if UNITY_UI_CLIP_RECT
+					#if UNITY_UI_CLIP_RECT
 				half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(IN.mask.xy)) * IN.mask.zw);
 				color *= m.x * m.y;
 			#endif

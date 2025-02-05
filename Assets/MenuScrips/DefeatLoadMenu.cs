@@ -10,15 +10,13 @@ public class DefeatLoadMenu : MonoBehaviour
 
     public void LoadMenuScene()
     {
-        Time.timeScale = 1; // Ensure the game is unpaused
-        SceneManager.LoadScene(1);
+        Time.timeScale = 1;        SceneManager.LoadScene(1);
        
     }
 
     public void LoadNextLevel()
     {
-        Time.timeScale = 1; // Ensure the game is unpaused
-        SceneManager.LoadScene(restartLevel);
+        Time.timeScale = 1;        SceneManager.LoadScene(restartLevel);
        
     }
 
