@@ -1278,6 +1278,34 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -50
       objectReference: {fileID: 0}
+    - target: {fileID: 3431817943570454580, guid: c111b09c7e891db4988738ccaf73f323, type: 3}
+      propertyPath: m_text
+      value: Game finished
+      objectReference: {fileID: 0}
+    - target: {fileID: 4791866943498680161, guid: c111b09c7e891db4988738ccaf73f323, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4791866943498680161, guid: c111b09c7e891db4988738ccaf73f323, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4791866943498680161, guid: c111b09c7e891db4988738ccaf73f323, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4791866943498680161, guid: c111b09c7e891db4988738ccaf73f323, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4791866943498680161, guid: c111b09c7e891db4988738ccaf73f323, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 411.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 4791866943498680161, guid: c111b09c7e891db4988738ccaf73f323, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
+      objectReference: {fileID: 0}
     - target: {fileID: 6560153595736339694, guid: c111b09c7e891db4988738ccaf73f323, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1303,6 +1331,10 @@ PrefabInstance:
       value: DefeatLoadMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7828921676414879512, guid: c111b09c7e891db4988738ccaf73f323, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8445914607483734900, guid: c111b09c7e891db4988738ccaf73f323, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
