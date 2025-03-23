@@ -3,31 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class bossNavigationScript : MonoBehaviour
+public class BossNavigationScript : MonoBehaviour
 {
     public Transform player;
+    public GameObject enemyPrefab;
+    public GameObject[] terrains;
+    public GameObject[] spawnpoints;
+
     private NavMeshAgent agent;
-    private Vector3 startingPoint;    public float moveRadius = 20f;    public float radiusIncrement = 15f;    public float incrementInterval = 30f;    private float timeSinceLastIncrement;    public GameObject enemyPrefab;
-    public GameObject[] terrains;    public GameObject[] spawnpoints;
+    private Vector3 startingPoint;
     private int currentTerrainIndex = 0;
-       void Start()
+    private float moveRadius = 20f;
+    private float radiusIncrement = 15f;
+    private float incrementInterval = 30f;
+    private float timeSinceLastIncrement;
+
+    void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        startingPoint = transform.position;        timeSinceLastIncrement = 0f;
-               ActivateTerrain(0);
+        startingPoint = transform.position;
+        timeSinceLastIncrement = 0f;
+
+        ActivateTerrain(0);
         Instantiate(enemyPrefab, spawnpoints[0].transform.position, Quaternion.identity);
     }
 
-       void Update()
+    void Update()
     {
-               timeSinceLastIncrement += Time.deltaTime;
+        timeSinceLastIncrement += Time.deltaTime;
 
-               if (timeSinceLastIncrement >= incrementInterval)
+        if (timeSinceLastIncrement >= incrementInterval)
         {
-            moveRadius += radiusIncrement;            timeSinceLastIncrement = 0f;            FindObjectOfType<audioManager>().Play("BossLaugh");
-                       if (currentTerrainIndex < terrains.Length - 1)
+            moveRadius += radiusIncrement;
+            timeSinceLastIncrement = 0f;
+            FindObjectOfType<audioManager>().Play("BossLaugh");
+
+            if (currentTerrainIndex < terrains.Length - 1)
             {
-                
                 currentTerrainIndex++;
                 for (int i = 0; i <= currentTerrainIndex; i++)
                 {
@@ -38,17 +50,17 @@ public class bossNavigationScript : MonoBehaviour
         }
 
         Vector3 playerPosition = player.position;
+        Vector3 directionToPlayer = playerPosition - startingPoint;
 
-               Vector3 directionToPlayer = playerPosition - startingPoint;
         if (directionToPlayer.magnitude > moveRadius)
         {
-                       playerPosition = startingPoint + directionToPlayer.normalized * moveRadius;
+            playerPosition = startingPoint + directionToPlayer.normalized * moveRadius;
         }
 
-               agent.destination = playerPosition;
+        agent.destination = playerPosition;
     }
 
-       private void ActivateTerrain(int index)
+    private void ActivateTerrain(int index)
     {
         for (int i = 0; i < terrains.Length; i++)
         {

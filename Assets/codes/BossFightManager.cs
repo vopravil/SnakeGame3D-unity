@@ -11,6 +11,7 @@ public class BossFightManager : MonoBehaviour
     public GameObject winScreen;
     public GameObject defeatScreen;
     public GameObject darkCave;
+    public GameObject healthBar;
     public GameObject goldCave;
     public int fruitsForWin = 6;
     public TMPro.TextMeshProUGUI scoreText;    public TMPro.TextMeshProUGUI winScoreText;
@@ -75,6 +76,7 @@ public class BossFightManager : MonoBehaviour
 
     public void Win()
     {
+        healthBar.SetActive(false);
         FindObjectOfType<GunCamera>().AfterGameCam();
         FindObjectOfType<audioManager>().Play("Win");
         Time.timeScale = 0;
@@ -102,6 +104,7 @@ public class BossFightManager : MonoBehaviour
     public IEnumerator Defeat()
     {
         yield return new WaitForSeconds(2f);
+        healthBar.SetActive(false);
         SnakeMovement.youDiedText.gameObject.SetActive(false);
         Time.timeScale = 0;
         scoreText.gameObject.SetActive(false);

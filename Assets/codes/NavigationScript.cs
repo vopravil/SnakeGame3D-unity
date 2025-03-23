@@ -7,11 +7,11 @@ public class NavigationScript : MonoBehaviour
     private NavMeshAgent agent;
     public Transform player;
 
-       void Start()
+    void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        GameObject playerObject = GameObject.FindWithTag("head");
 
-               GameObject playerObject = GameObject.FindWithTag("head");
         if (playerObject != null)
         {
             player = playerObject.transform;
@@ -22,7 +22,7 @@ public class NavigationScript : MonoBehaviour
         }
     }
 
-       void Update()
+    void Update()
     {
         if (player != null)
         {

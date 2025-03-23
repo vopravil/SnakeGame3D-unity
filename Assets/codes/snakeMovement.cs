@@ -69,22 +69,14 @@ public class snakeMovement : MonoBehaviour
             transform.Rotate(0, -90, 0);
             rotation -= 90;
         }
-        else if (Input.GetKeyDown(KeyCode.Q))
-        {
-            deleteBody();
-        }
+       
 
 
     }
 
     void FixedUpdate()
     {
-       /* if (Input.GetKeyDown(KeyCode.G))
-        {
-           
-            GrowBody();
-            
-        }*/
+      
         float speedBoostInput = Input.GetAxis("Vertical");
         moveSpeed = (speedBoostInput != 0f) ? defSpeed + (speedBoost * speedBoostInput) : defSpeed;
 
@@ -96,11 +88,10 @@ public class snakeMovement : MonoBehaviour
     {
         Vector3 forwardMovement = transform.forward * moveSpeed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + forwardMovement);
-
-               positionList.Insert(0, transform.position);
+        positionList.Insert(0, transform.position);
         rotationList.Insert(0, transform.rotation);
 
-               if (positionList.Count > 1000)
+        if (positionList.Count > 1000)
         {
             positionList.RemoveAt(positionList.Count - 1);
             rotationList.RemoveAt(rotationList.Count - 1);
@@ -111,7 +102,7 @@ public class snakeMovement : MonoBehaviour
     {
         double followIndex = 0;
        
-               for (int i = 0; i < bodyParts.Count; i++)
+        for (int i = 0; i < bodyParts.Count; i++)
         {
            
             if (collided is false)
@@ -121,7 +112,7 @@ public class snakeMovement : MonoBehaviour
                 {
                     if (moveSpeed > defSpeed)
                     {
-                        followIndex = Mathf.Clamp((i + 1.4f) * gap +3, 0, positionList.Count - 1);
+                        followIndex = Mathf.Clamp((i + 1.4f) * gap + 3 , 0, positionList.Count - 1);
                     }
                     else
                     {
@@ -175,7 +166,7 @@ public class snakeMovement : MonoBehaviour
     {
         if (gameObject.CompareTag("head"))
         {
-                       if (other.CompareTag("tail") || other.CompareTag("body")  || other.CompareTag("obstacle"))
+            if (other.CompareTag("tail") || other.CompareTag("body")  || other.CompareTag("obstacle"))
             {
                 Debug.Log("Head collided with tail or body or wall");
                 Death();

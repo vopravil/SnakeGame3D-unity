@@ -10,7 +10,7 @@ public class LoadMenu : MonoBehaviour
 
     public void LoadMenuScene()
     {
-        Time.timeScale = 1;        SceneManager.LoadScene(1);
+        Time.timeScale = 1;        SceneManager.LoadScene(0);
         PlayerPrefs.SetInt("UnlockedLevel", nextlevel);
         PlayerPrefs.Save();
     }
@@ -29,7 +29,7 @@ public class LoadMenu : MonoBehaviour
     }
     public void LoadMenuFromPauseMenu()
     {
-        Time.timeScale = 1;        SceneManager.LoadScene(1);
+        Time.timeScale = 1;        SceneManager.LoadScene(0);
         
     }
 
